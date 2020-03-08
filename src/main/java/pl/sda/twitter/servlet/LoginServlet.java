@@ -17,8 +17,8 @@ public class LoginServlet extends HttpServlet {
         final String login = req.getParameter("login");
         final String password = req.getParameter("password");
 
-        PrintWriter writer = resp.getWriter();
-        String userName = "admin";
+        final PrintWriter writer = resp.getWriter();
+        final String userName = "admin";
         if (login.equals(userName) && password.equals("password")) {
             final HttpSession session = req.getSession();
             session.setAttribute("user", userName);
