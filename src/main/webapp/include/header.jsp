@@ -1,3 +1,4 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="#">Twitter</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,19 +11,18 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/index.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/login.jsp">Log in</a>
+
+                <c:choose>
+                    <c:when test="${sessionScope.user == null}">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/login.jsp">Log in</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+                    </c:otherwise>
+                </c:choose>
+
+
             </li>
-<%--            <li class="nav-item">--%>
-<%--                <a class="nav-link disabled" href="#">Disabled</a>--%>
-<%--            </li>--%>
-<%--            <li class="nav-item dropdown">--%>
-<%--                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>--%>
-<%--                <div class="dropdown-menu" aria-labelledby="dropdown01">--%>
-<%--                    <a class="dropdown-item" href="#">Action</a>--%>
-<%--                    <a class="dropdown-item" href="#">Another action</a>--%>
-<%--                    <a class="dropdown-item" href="#">Something else here</a>--%>
-<%--                </div>--%>
-<%--            </li>--%>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
