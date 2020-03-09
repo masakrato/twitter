@@ -1,6 +1,7 @@
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-    <a class="navbar-brand" href="#">Twitter</a>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,8 +11,16 @@
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/index.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
 
+            <c:choose>
+                <c:when test="${sessionScope.user != null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/add-article.jsp">Dodaj artykuł</a>
+                    </li>
+                </c:when>
+            </c:choose>
+
+            <li class="nav-item">
                 <c:choose>
                     <c:when test="${sessionScope.user == null}">
                         <a class="nav-link" href="${pageContext.request.contextPath}/login.jsp">Log in</a>
@@ -20,8 +29,6 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                     </c:otherwise>
                 </c:choose>
-
-
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -30,3 +37,4 @@
         </form>
     </div>
 </nav>
+<jsp:include page="messages.jsp"/>
